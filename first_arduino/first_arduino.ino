@@ -1,22 +1,25 @@
 #include "M5Atom.h"
 
-bool Flag = false;// changed IMU6886Flag to flag
+bool IMU6886Flag = false;// changed IMU6886Flag to flag 
+// IMU6886Flag is from example, there were some issue when variables changed, don't know why it worked 
 void setup()
 {
   M5.begin(true, false, true);
   if (!M5.IMU.Init()) IMU6886Flag = true;
 }
-
-void loop()
-{
-  float ax=0.0;ay=0.0,az=0.0;
-  if(Flag==true)
-  {
-    M4.IMU.getAcceIData(&ax,&ay,&az);
-  }
+  
 uint8_t FSM = 0;
 bool onState = true;
 float triggered = 0;
+
+void loop()
+{
+  float ax = 0.0, ay = 0.0, az = 0.0;
+  if(IMU6886Flag == true){
+    M5.IMU.getAccelData(&ax, &ay, &az);
+  }
+  
+
 
 
 
@@ -59,11 +62,14 @@ float triggered = 0;
       {
         M5.dis.drawpix(i, ax > 0.01 || ay > 0.01 ? 0x00f000 : onState ? 0x00f000: 0x000000);
       }
+      
       break;
-
-    case 4: /
+    case 4: 
       //Automatic Front Mode Rear (White): LEDs are solid during a braking event. Return to strobe when riding.
     break;
+
+        default:
+      break;
     }
     
      if ((millis() - triggered) >= 500) {
