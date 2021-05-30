@@ -55,6 +55,15 @@ int x    = matrix.width();
 int pass = 0;
 
 void loop() {
+   M5.IMU.getAccelData(&aX, &aY, &aZ);
+   M5.update();
+   if(aZ < 0.1 && abs(aX) < 0.1 && abs(aY)< 0.1)
+   {
+     if (M5.Btn.wasPressed())
+      { 
+        M5.dis.drawpix(1, 0x707070);
+      }
+    }
   matrix.fillScreen(0);
   matrix.setCursor(x, 0);
   matrix.print(F("GHAYA"));
