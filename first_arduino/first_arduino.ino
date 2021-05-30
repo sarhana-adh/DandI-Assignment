@@ -57,11 +57,7 @@ float triggered = 0;
     case 3: //Automatic Rear Mode Rear (RED): LEDs are solid during a braking event. Return to strobe when riding.
        for (int i = 0; i < 25; i++) 
       {
-        M5.dis.drawpix(i, ax < 0.01 ? 0x00f000 : onState ? 0x00f000: 0x000000);
-      }
-        for (int i = 0; i < 25; i++) 
-      {
-        M5.dis.drawpix(i, ay > 0.01 ? 0x00f000 : onState ? 0x00f000: 0x000000);
+        M5.dis.drawpix(i, ax > 0.01 || ay > 0.01 ? 0x00f000 : onState ? 0x00f000: 0x000000);
       }
       break;
 
