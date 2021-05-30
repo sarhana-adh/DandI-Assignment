@@ -66,6 +66,10 @@ void loop()
       break;
     case 4: 
       //Automatic Front Mode Rear (White): LEDs are solid during a braking event. Return to strobe when riding.
+      for (int i = 0; i < 25; i++) 
+      {
+        M5.dis.drawpix(i, ax > 0.01 || ay > 0.01 ? 0xffffff : onState ? 0xffffff: 0x000000);
+      }
     break;
 
         default:
