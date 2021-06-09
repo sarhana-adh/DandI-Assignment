@@ -1,15 +1,14 @@
 // Adafruit_NeoMatrix example for single NeoPixel Shield.
 // Scrolls 'Howdy' across the matrix in a portrait (vertical) orientation.
 
-#include <Adafruit_GFX.h>
+/*#include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
 #ifndef PSTR
  #define PSTR // Make Arduino Due happy
 #endif
-
-#define PIN 27
-
+#define PIN 27*/
+extern const unsigned char image_one[77]
 // MATRIX DECLARATION:
 // Parameter 1 = width of NeoPixel matrix
 // Parameter 2 = height of matrix
@@ -36,13 +35,13 @@
 // Arduino.  When held that way, the first pixel is at the top right, and
 // lines are arranged in columns, progressive order.  The shield uses
 // 800 KHz (v2) pixels that expect GRB color data.
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(5, 5, PIN,
+/*Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(5, 5, PIN,
   NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
   NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
-  NEO_GRB            + NEO_KHZ800);
+  NEO_GRB            + NEO_KHZ800);*/
 
-const uint16_t colors[] = {
-  matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };
+/*const uint16_t colors[] = {
+  matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };*/
 
 void setup() {
   matrix.begin();
@@ -61,10 +60,15 @@ void loop() {
    {
      if (M5.Btn.wasPressed())
       { 
-        M5.dis.drawpix(1, 0x707070);
+        for(int i=0;i<25;i++)
+        {
+          M5.dis.displaybuff((uint8_t *)image_one);
+        }
       }
     }
-  matrix.fillScreen(0);
+}
+
+/*matrix.fillScreen(0);
   matrix.setCursor(x, 0);
   matrix.print(F("GHAYA"));
   if(--x < -36) {
@@ -73,5 +77,4 @@ void loop() {
     matrix.setTextColor(colors[pass]);
   }
   matrix.show();
-  delay(100);
-}
+  delay(100);*/
