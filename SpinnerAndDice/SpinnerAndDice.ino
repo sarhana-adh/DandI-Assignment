@@ -7,18 +7,21 @@
 #include <WiFiClient.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
-
 #include "index.h"
+#include "1.c";
+#include "2.c";
+#include "3.c";
+#include "4.c";
+#include "5.c";
+#include "6.c";
 
 
-CRGB led;
 int color;
 double pitch, roll;
 double r_rand = 180 / PI;
 int Diceroller;
-const char* ssid = "ATOM-SOCKET";
+const char* ssid = "Group-10";
 const char* password = "12345678";
-CRGB HSVtoRGB(int h, int s, int v);
 
 
 WebServer server(80);
@@ -36,20 +39,22 @@ HardwareSerial AtomSerial(2);
 
 bool RelayFlag = false;
 
+bool diceState = true;
+
 String DataCreate() {
-  String Data; String("green");
+  String Data;
   switch(color){
-    case 0:Data = String("orange");
+    case 0:Data = String("red");
     break;
-    case 2:Data = String("green");
+    case 1:Data = String("orange");
      break;
-    case 3:Data = String("red");
+    case 2:Data = String("yellow");
      break;
-    case 4:Data = String("yellow");
+    case 3:Data = String("green");
      break;
-    case 5:Data = String("blue");
+    case 4:Data = String("blue");
      break;
-    case 6:Data = String("purple"); 
+    case 5:Data = String("purple"); 
      break;
     default: Data = String("purple");
      break;
@@ -71,6 +76,19 @@ void setup() {
   Serial.println(WiFi.softAPIP());  //IP address assigned to your ESP
   server.on("/", handleRoot);
 
+  server.on("/changeState", [](){
+      String state = server.arg("state");
+      Serial.println(state);
+      
+      if(state == "DICE"){
+         diceState = true;
+      }else{
+        diceState = false;
+      }
+
+      server.send(200, "text/plain", "SUCCESS");
+    });
+
   server.on("/data", []() {
     server.send(200, "text/plain", DataCreate());
   });
@@ -81,100 +99,117 @@ void setup() {
 
 void loop() {
   ATOM.SerialReadLoop();
-
-// R,G,B from 0-255, H from 0-360, S,V from 0-100
-  
   M5.update();
   server.handleClient();
   delay(50);
   M5.IMU.getAttitude(&pitch, &roll);
-  //  Serial.printf("%.2f \n",pitch);
 
   double arc = atan2(pitch, roll) * r_rand + 180;
-     Serial.printf("%.2f \n",arc);
-    // printing the integer that is supposed to be from 0 to 5 
-    int integer = int (arc/60);
-    Serial.printf("%i \n",integer);
-  double val = sqrt(pitch * pitch + roll * roll);
-  //   Serial.printf("%.2f,%.2f,%.2f,%.2f\n", pitch, roll, arc, val);
+   int arcint = int(arc);
+   Serial.printf("%i \n", arcint);
+  // the boolean should be here
+  if (!diceState) {
+    FillRGB(arc);
+  }
+  else {
+    Diceroller(arc);
+  }
 
-  val = (val * 6) > 100 ? 100 : val * 6;
-  led = HSVtoRGB(arc, val, 100); 
-  
-  // calling the function 
-  M5.dis.fillpix(led);
   M5.update();
-  //   Diceroller = (rand() % 6) + 1;
-  //  Serial.printf("%.2f \n",Diceroller);
+
 }
+  
+void Diceroller(double h) {
 
-// defining the function 
-  CRGB HSVtoRGB(int h, int s, int v){
-  CRGB ReRGB(0, 0, 0);
-
-  float RGB_min, RGB_max;
-  RGB_max = v * 2.55f;
-  RGB_min = RGB_max * (100 - s) / 100.0f;
-
-  color = h / 60;
-  //Serial.printf(" %.2f \n", color);
-  int difs = h % 60;
- // float RGB_Adj = (RGB_max - RGB_min) * difs / 60.0f;
+  color = int (h / 60);
 
   switch (color)
   {
-    /*   case 1:
-           ReRGB.r = 255;
-           ReRGB.g = 0 ;
-            ReRGB.b = 0;
-           break;
-            Serial.printf("1 \n");*/
-  // 2 is green 
-  case 2:
-      ReRGB.r = 255 ;
-      ReRGB.g = 128;
-      ReRGB.b = 0;
-     // Serial.printf("2 \n");
+    case 0:
+      M5.dis.displaybuff((uint8_t *)image_1, 0, 0);
       break;
-// 3 is red 
+
+    case 1:
+      M5.dis.displaybuff((uint8_t *)image_2, 0, 0);
+      break;
+
+    case 2:
+      M5.dis.displaybuff((uint8_t *)image_3, 0, 0);
+      break;
+
     case 3:
-      ReRGB.red = 0;
+      M5.dis.displaybuff((uint8_t *)image_4, 0, 0);
+      break;
+
+    case 4:
+      M5.dis.displaybuff((uint8_t *)image_5, 0, 0);
+      break;
+
+    case 5:
+      M5.dis.displaybuff((uint8_t *)image_6, 0, 0);
+      break;
+  }
+
+
+};
+
+
+// defining the function for
+void FillRGB(double h) {
+  CRGB ReRGB(0, 0, 0);
+  color = int(h / 60); // h value  0 to 360  color 0 to 5
+  switch (color)
+  {
+    case 0: // red 
+      ReRGB.r = 0;
+      ReRGB.g = 255;
+      ReRGB.b = 0;  
+      Serial.printf("1 \n"); 
+      break;
+
+    case 1: // orange 
+      ReRGB.r = 128;
+      ReRGB.g = 255;
+      ReRGB.b = 0;
+      Serial.printf("2 \n");
+      break;
+      
+
+    case 2: // yellow
+      ReRGB.red = 255;
       ReRGB.green = 255; // green and red are switched
       ReRGB.blue = 0 ;
-     // Serial.printf("3 \n");
+      Serial.printf("3 \n");
       break;
       
-// 4 is yellow 
-    case 4:
+    case 3: // green
       ReRGB.r = 255;
-      ReRGB.g = 255 ;
+      ReRGB.g = 0 ;
       ReRGB.b = 0;
-    //  Serial.printf("4 \n");
+      Serial.printf("4 \n");
       break;
-      
-// 5 is blue 
-    case 5:
+
+    case 4: // blue 
       ReRGB.r = 0 ;
       ReRGB.g = 0;
       ReRGB.b = 255;
-     // Serial.printf("5 \n");
+      Serial.printf("5 \n");
       break;
-// 0 is orange 
-    case 0:
-      ReRGB.r = 128;
-      ReRGB.g = 255;
-      ReRGB.b = 0 ;
-      //Serial.printf("0 \n");
+
+    case 5: // purple 
+      ReRGB.r = 0;
+      ReRGB.g = 127;
+      ReRGB.b = 255 ;
+      Serial.printf("0 \n");
       break;
-      
-// default is purple 
+
     default:
       ReRGB.r = 0;
       ReRGB.g = 127;
       ReRGB.b = 255 ;
-     // Serial.printf("6 \n");
-     // Serial.printf("%.2f \n", color);
+      Serial.printf("6 \n");
+      Serial.printf("%.2f \n", color);
 
   }
-  return ReRGB;
+  M5.dis.fillpix(ReRGB);
 }
