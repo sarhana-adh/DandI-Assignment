@@ -27,7 +27,7 @@ Modes (with respective mode number):
  
 ### Spinner and Dice Game - 
 
-On uploading the code to an M5 Stack atom matrix and supllying the Atom Matrix with power, the matrix creates a wifi access point. The wifi named "Group-10" can be connect using any deive that can be connected to a wifi server. The password for this server is: 
+On uploading the code to an M5 Stack atom matrix and supllying the Atom Matrix with power, the matrix creates a wifi access point. The wifi named "Group-10" can be connect using any device that can be connected to a wifi server. The password for this server is: 
 ##### 12345678 
 On connecting the device to this wifi server, open http://192.168.4.1/ on a browser in this device. THe webpage displays dice number as shown below and works simulataneously with the atom (same number is displayed on the atom). 
 
