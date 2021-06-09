@@ -49,8 +49,11 @@ This displays a matrix resembling the atom on the webpage, and the all the leds 
 The spinner and dice button can be clicked on to change to mode as accord to user's wish. 
 
 ## Installation 
-For installation of the programs, open terminal on MacOS device or command prompt on Windows. Type in:
-#### git clone https://github.com/sarhana-adh/our_project.git
+
+Click on the following link to download the file.
+
+<a id="raw-url" href="https://github.com/sarhana-adh/our_project.git">Download our_project</a>
+
 
 Search for our_project folder in your computer. Open the folder. To install the 3 different programs:
 
