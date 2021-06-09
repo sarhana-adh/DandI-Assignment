@@ -50,10 +50,10 @@ The spinner and dice button can be clicked on to change to mode as accord to use
 
 ## Installation 
 
-Click on the following link to download the file.
-
-<a id="raw-url" href="https://github.com/sarhana-adh/our_project.git">Download our_project</a>
-
+Open terminal on MacOS or Command Prompt on Windows. Type in:
+```
+ git clone https://github.com/sarhana-adh/our_project
+```
 
 Search for our_project folder in your computer. Open the folder. To install the 3 different programs:
 
