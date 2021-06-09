@@ -73,6 +73,6 @@ Search for our_project folder in your computer. Open the folder. To install the 
 3. On Arduino application being opened, go to tools make sure the board is "M5 Stack Atom" and the M5 Stack Atom is connected to the device. 
 4. Upload the SpinnerAndDice.ino by pressing on the upload button (upward-facing arrow).
 
-##### Recommended: Spinner hardware that can spin the M5 atom and supply it with power. 
+##### Recommended: Spinner housing and PCB that can spin the M5 atom and supply it with power. 
 
 ### Supply the M5 Stack Atom Matrix with power inorder to run the program.
