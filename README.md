@@ -14,28 +14,35 @@ On button pressed, the M5 atom cycles back to
 
 ### Temperature - 
 
-On uploading the source code on the M5 atom matrix, The M5 atom matrix can be imagined as a device that is carried by a person whole day. When holding the device in the hand with the screen facing relatively upwards, and pressing the button, the m5 atom is activated/ turned on. The modes on which the atom device is can be changed by tilting it right or left (right to increase the mode number, left to go back to the decrese the mode number.)
+On uploading the source code on the M5 atom matrix, The M5 atom matrix can be imagined as a device that is carried by a person whole day. When holding the device in the hand with the screen facing relatively upwards, and pressing the button, the m5 atom is activated/ turned on. The modes on which the atom device is can be changed by tilting it right or left (right to increase the mode number, left to go back to the decrese the mode number.) The mode number is displayed in the device and the button can be pressed inorder to switch into the mode. 
 
-Modes:
-i. Show Active temperature + Units
-ii. Show average of last 24 hours of temperature + Units
-iii. Show color scale of temperature range + current temperature as color
-iv. Show graph of temperature across a predefined range.
-v. Change units
+Modes (with respective mode number):
+1. Show Active temperature + Units
+2. Show average of last 24 hours of temperature + Units
+3. Show color scale of temperature range + current temperature as color
+4. Show graph of temperature across a predefined range.
+5. Change units 
  
 ### Spinner and Dice Game - 
+
+On uploading the code to an M5 Stack atom matrix and supllying the Atom Matrix with power, the matrix creates a wifi access point. The wifi named "Group-10" can be connect using any deive that can be connected to a wifi server. The password for this server is: 
+##### 12345678 
+ On connecting the device to this wifi server, open http://192.168.4.1/ on a browser in this device. The 
+
 
 
 ## Installation 
 
+Open terminal on MacOS device or command prompt on Windows. Type in:
+
+#### git clone 
+#### 
+
 ### Brakelight
 
-$ git clone https://example.com
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
-
 ### Temperature 
+
+
 
 ### Spinner and Dice Game 
 The Brakelight provides a source code 
