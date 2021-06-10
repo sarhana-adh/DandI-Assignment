@@ -14,7 +14,6 @@ On uploading the source code on the M5 atom matrix, The M5 atom matrix can be im
 
 On button pressed, the M5 atom cycles back to number 1 and runs through the cycle again.
 
-https://user-images.githubusercontent.com/72303952/121472913-ed828080-c9d2-11eb-9c2a-f2acf432613c.mp4
 
 ### Temperature - 
 
