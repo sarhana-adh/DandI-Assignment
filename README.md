@@ -14,6 +14,8 @@ On uploading the source code on the M5 atom matrix, The M5 atom matrix can be im
 
 On button pressed, the M5 atom cycles back to number 1 and runs through the cycle again.
 
+https://user-images.githubusercontent.com/72303952/121472913-ed828080-c9d2-11eb-9c2a-f2acf432613c.mp4
+
 ### Temperature - 
 
 On uploading the source code on the M5 atom matrix, The M5 atom matrix can be imagined as a device that is carried by a person whole day. When holding the device in the hand with the screen facing relatively upwards, and pressing the button, the m5 atom is activated/ turned on. The modes on which the atom device is can be changed by tilting it right or left (right to increase the mode number, left to go back to the decrese the mode number.) The mode number is displayed in the device and the button can be pressed inorder to switch into the mode. 
